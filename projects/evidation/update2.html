@@ -463,7 +463,7 @@
 <p>We began looking at heart rate and step residuals in the most basic sense we could. This gave us the ability to see any basic trends in the heart rate, steps, and COVID-19 diagnosis. To calculate the residuals for each patient, we used the following formulas:</p>
 <div class="math notranslate nohighlight">
 \[resid_{hr} = hr_t - \bar{hr}_i\]</div>
-<p>Where <span class="math notranslate nohighlight">\(t\)</span> is the heart rate at time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(i\in\{1,...,32\}\)</span> is an index representing each patient. A similar method was used to compute step residuals:</p>
+<p>Where <span class="math notranslate nohighlight">\(hr_t\)</span> is the heart rate at time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\bar{hr}_i\)</span> is participant <span class="math notranslate nohighlight">\(i\)</span>’s average heart rate over all days. A similar method was used to compute step residuals:</p>
 <div class="math notranslate nohighlight">
 \[resid_{step} = step_t - \bar{step}_i\]</div>
 <p>Below is a visualizations of participant AFPB8J2’s heart rate and residuals computed using this method. Each blue dot is the participant’s average HR that day, and the red line is their average HR over all days. The blue lines represent the residual value of heart rate described in the equations above:</p>
