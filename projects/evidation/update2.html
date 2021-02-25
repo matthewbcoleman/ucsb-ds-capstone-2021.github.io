@@ -52,8 +52,6 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="flir" href="../flir/description.html" />
@@ -474,7 +472,7 @@
 <h3>Method 1: comparing HR with the average over all days<a class="headerlink" href="#method-1-comparing-hr-with-the-average-over-all-days" title="Permalink to this headline">¶</a></h3>
 <p>We began looking at heart rate and step residuals in the most basic sense we could. This gave us the ability to see any basic trends in the heart rate, steps, and COVID-19 diagnosis. To calculate the residuals for each patient, we used the following formulas:</p>
 <p><img alt="Image" src="../../_images/hr_residual.png" /></p>
-<p>Where <span class="math notranslate nohighlight">\(hr_t\)</span> is the heart rate at time <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(\bar{hr}_i\)</span> is participant <span class="math notranslate nohighlight">\(i\)</span>’s average heart rate over all days. A similar method was used to compute step residuals:</p>
+<p>Where <img alt="Image" src="../../_images/hr_t.png" /> is the heart rate at time t and <img alt="Image" src="../../_images/hr_i.png" /> is participant i’s average heart rate over all days. A similar method was used to compute step residuals:</p>
 <p><img alt="Image" src="../../_images/step_residual.png" /></p>
 <p>Below is a visualizations of participant AFPB8J2’s heart rate and residuals computed using this method. Each blue dot is the participant’s average HR that day, and the red line is their average HR over all days. The blue lines represent the residual value of heart rate described in the equations above:</p>
 <p><img src="./AFPB8J2_hr_residuals.png"></img></p>
