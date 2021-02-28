@@ -429,6 +429,11 @@
      Method 2: comparing HR with the average over a 5 day window
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#residuals-and-covid-19-symptom-onset-recovery">
+     Residuals and COVID-19 symptom onset/recovery
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -485,6 +490,23 @@
 <p><img alt="Image" src="../../_images/AFPB8J2_hr_residuals_5d.png" /></p>
 <p>In this method, we took the 5 day moving average of a users heart rate and computed residuals from their data. This sliding window would compute the average over the previous 5 days, moving as the data went along.</p>
 <p>This method’s strength is that it takes into account variability over a time frame, rather than assuming there is no variance in a patients resting heart rate. If someone began exercising, and their resting heart rate decreases as their cardiovascular health increases, then the moving average would take into account this change, whereas the baseline model would not.</p>
+</div>
+<div class="section" id="residuals-and-covid-19-symptom-onset-recovery">
+<h3>Residuals and COVID-19 symptom onset/recovery<a class="headerlink" href="#residuals-and-covid-19-symptom-onset-recovery" title="Permalink to this headline">¶</a></h3>
+<p>We were interested to see whether there are spikes/dips in HR residuals before and after a participant experiences COVID-19 symptoms. Below are the same plots from before, but with residuals colored in red if a participant experienced symptoms that day:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Avg over all days</p></th>
+<th class="head"><p>Avg over 5 day window</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="image" src="../../_images/c_AFPB8J2_hr_residuals.png" /></p></td>
+<td><p><img alt="image" src="../../_images/c_AFPB8J2_hr_residuals_5d.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>Just inspecting the graph, we see there’s an initial spike in the residual, and then a significant drop. Our next steps are to investigate anomaly detection algorithms and see if they can pick up on these anomalous HRs and anticipate COVID-19 diagnosis.</p>
 </div>
 </div>
 <div class="section" id="data-updates">
