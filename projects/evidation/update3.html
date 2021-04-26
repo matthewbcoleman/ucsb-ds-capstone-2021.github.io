@@ -519,7 +519,7 @@
 <div class="section" id="multiple-change-point-detection">
 <h2>Multiple Change-point Detection<a class="headerlink" href="#multiple-change-point-detection" title="Permalink to this headline">¶</a></h2>
 <p>We also took an unsupervised approach to COVID-19 detection. In particular, we used the multiple change-point detection method to find points in the heart rate time series data with abrupt and significant changes. We were interested in whether or not the MCP algorithm would pick up on abnormally low or high heart rates near symptom onset or diagnosis.</p>
-<p><img alt="" src="projects/evidation/ucsb_ds_capstone_projects_2021/projects/evidation/s_update_1/image1.png" /></p>
+<p><img alt="" src="../../_images/image1.png" /></p>
 <p>Using the envcpt function on Rstudio, we tested many different methods of multiple change point detection on one of the participant’s, AFPB8J2,  heart rate pre COVID, during COVID, and post COVID.</p>
 <p>The top 12 lines are the different multiple change point algorithms, with most of them being two methods added together. ‘Trend cpt + AR(2)’, ‘Trend cpt + AR(1), ‘Trend cpt’, and ‘Mean cpt’ have horizontal lines that indicate the different change points. Therefore, we used these four methods to record the first changepoint of every participant who contracted COVID.</p>
 <p>Below is a visualization of the time points (colored in orange) produced by the mean MCP method. So, orange dots are points in which the algorithm detected significant changes in heart rate. Because this algorithm returns multiple change points, we’ve only visualized the first:</p>
