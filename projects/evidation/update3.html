@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data &#8212; Data Science Capstone 2021</title>
+    <title>Progres Update, April 25 &#8212; Data Science Capstone 2021</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -447,41 +447,41 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
    Data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#one-hot-encoding">
      One-Hot Encoding
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sleep-metrics">
      Sleep Metrics
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#models">
    Models
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#logistic-regression">
      Logistic Regression
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multiple-change-point-detection">
      Multiple Change-point Detection
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sleep">
    Sleep :
   </a>
@@ -497,27 +497,29 @@
         
               <div>
                 
-  <div class="section" id="data">
-<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="progres-update-april-25">
+<h1>Progres Update, April 25<a class="headerlink" href="#progres-update-april-25" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="one-hot-encoding">
-<h2>One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h2>
+<h3>One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h3>
 <p>We one-hot encoded our patient data into two groups: 0=no COVID and 1=COVID. This feature was created by taking the patient’s <strong>first COVID diagnosis date</strong> and <strong>last COVID recovery date</strong> and comparing it to the observations date. If the date fell between the diagnosis and recovery date, then the patient was marked with a 1, and if the date fell outside of the interval, the patient was marked with a 0.</p>
 </div>
 <div class="section" id="sleep-metrics">
-<h2>Sleep Metrics<a class="headerlink" href="#sleep-metrics" title="Permalink to this headline">¶</a></h2>
+<h3>Sleep Metrics<a class="headerlink" href="#sleep-metrics" title="Permalink to this headline">¶</a></h3>
 <p>Our most recent work used sleep data, which was reported as sleep stages (awake, light, deep) and sleep stage durations (in seconds). We aggregated the daily sleep stage durations to create a feature <code class="docutils literal notranslate"><span class="pre">sleep_duration</span></code> for each patient.</p>
 </div>
 </div>
 <div class="section" id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
 <p>One of the goals of our project is to develop models that predict COVID-19 symptom onset using an individual’s heart rate, step count, and sleep data. So far we’ve explored offline learning approaches. An offline model assumes the individual contracted the coronavirus, and considers all data leading up to and after the individual’s symptom onset. These models are not used for real time prediction of COVID-19 infection (this would require an online learning approach). Instead, we are developing them  to better understand how COVID-19 affects the physiology of an individual.</p>
 <p>So far we’ve taken two modeling approaches: a logistic regression model, and a multiple change-point detection method.</p>
 <div class="section" id="logistic-regression">
-<h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<h3>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
 <p>One of the models we explored was a logistic regression model. We created 3 different models using different features: One used heart rate residuals for each patient, another used the Heart Rate Over Steps (HROS) feature we created, and the last used the sleep duration for each night.  Our response was whether someone had COVID (covid=1) or not (covid=0). We train-test split the data 80% train 20% test. Each observation in our dataset corresponded to one day. The model had high precision with a value of 1, meanwhile the recall was lower. This occurred because there was a large class imbalance in our data. Most of the observations for patients were when they did not have a COVID diagnosis, resulting in only a small amount of positive observations, meaning some of our test-sets did not contain any positive predictions. Out of the 5477 observations we had, 5135 observations did not have the patient marked for COVID, and 342 had the patient marked with COVID. Changing the prediction threshold for the model and using class weights did increase the number of positive (covid=1) predictions, but negatively affected the accuracy, precision, and recall of the model. This gave us more justification to use the multiple change-point detection discussed later in this section.</p>
 </div>
 <div class="section" id="multiple-change-point-detection">
-<h2>Multiple Change-point Detection<a class="headerlink" href="#multiple-change-point-detection" title="Permalink to this headline">¶</a></h2>
+<h3>Multiple Change-point Detection<a class="headerlink" href="#multiple-change-point-detection" title="Permalink to this headline">¶</a></h3>
 <p>We also took an unsupervised approach to COVID-19 detection. In particular, we used the multiple change-point detection method to find points in the heart rate time series data with abrupt and significant changes. We were interested in whether or not the MCP algorithm would pick up on abnormally low or high heart rates near symptom onset or diagnosis.</p>
 <p><img alt="" src="../../_images/image1.png" /></p>
 <p>Using the envcpt function on Rstudio, we tested many different methods of multiple change point detection on one of the participant’s, AFPB8J2,  heart rate pre COVID, during COVID, and post COVID.</p>
@@ -532,7 +534,7 @@
 </div>
 </div>
 <div class="section" id="sleep">
-<h1>Sleep :<a class="headerlink" href="#sleep" title="Permalink to this headline">¶</a></h1>
+<h2>Sleep :<a class="headerlink" href="#sleep" title="Permalink to this headline">¶</a></h2>
 <p>The goal of our team was to examine the sleep data, which was derived from individuals who wore their fitbit at night to record their sleep, to discover an indicator or pattern in their sleep that is significant to their covid onset date. This was done in an effort to see how sleep is affected by contracting the coronavirus. There is research that indicated that overall sleep duration increases after an individual contracts coronavirus. We started the analytics process by creating exploratory plots which examine the sleep stages and the duration of the sleep stages for the individuals.</p>
 <p>The first exploratory plots display the contrast in the sleep stages of the individuals. Three individuals with differing data were chosen to show the contrast.</p>
 <p><img alt="" src="../../_images/image4.png" /></p>
@@ -544,6 +546,7 @@
 <p><img alt="" src="../../_images/image7.png" /></p>
 <p>This graph displays all days which are recorded for the individual’s sleep. The days in red are highlighted because they are the days which the individual contracted covid. The goal of these visualizations was to see if there was any significant difference when the individual contracted covid.</p>
 <p><img alt="" src="../../_images/image8.png" /></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
